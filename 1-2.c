@@ -26,24 +26,26 @@ double GetPerimeter(const double a, const double b, const double c);
  */
 double GetArea(const double a, const double b);
 
+/**
+ * @brief Считывает с клавиатуры значение с плавающей точкой
+ * @return Считанное значение
+ */
+double getDouble();
+
+
 int main()
 {
-    double a = 0.0;
-    double b = 0.0;
-    double c = 0.0;
     printf("Enter the first cathetus: ");
-    scanf("%lf", &a);
+    double a = getDouble();
 
     printf("Enter the second cathetus: ");
-    scanf("%lf", &b);
+    double b = getDouble();
 
-    c = GetC(a, b);
-
-    printf("The perimeter of the triangle is: %lf\n", GetPerimeter(a, b, c));
+    printf("The perimeter of the triangle is: %lf\n", GetPerimeter(a, b, GetC(a, b)));
     printf("The area of the triangle is: %lf\n", GetArea(a, b));
+
     return 0;
 }
-
 
 
 double GetC(const double a, const double b)
@@ -60,4 +62,11 @@ double GetArea(const double a, const double b)
 {
 
     return (a * b) / 2;
+}3
+
+double getDouble()
+{
+    double value = 0.0;
+    scanf("%lf", &value);
+    return value;
 }
