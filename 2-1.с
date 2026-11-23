@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+/**
+ * @brief Считывает целое число с клавиатуры
+ * @return Введённое целое число
+ */
+int getInt();
+/**
+ * @brief Перечисление доступных арифметических операций
+ * @details SUM - сумма чисел,
+ * DIFFERENCE - разность чисел,
+ * AVERAGE - среднее арифметическое чисел
+ */
+enum Operation
+{
+    SUM = 1,
+    DIFFERENCE,
+    AVERAGE
+};
+
+/**
+ * @brief Вычисляет сумму двух целых чисел
+ * @param a Первое число
+ * @param b Второе число
+ * @return Сумма чисел
+ */
+int GetSum(const int a, const int b);
+/**
+ * @brief Вычисляет разность двух целых чисел
+ * @param a Первое число
+ * @param b Второе число
+ * @return Разность чисел
+ */
+int GetDifference(const int a, const int b);
+/**
+ * @brief Вычисляет среднее арифметическое двух целых чисел
+ * @param a Первое число
+ * @param b Второе число
+ * @return Среднее арифметическое чисел
+ */
+double GetAverage(const int a, const int b);
+
+/**
+ * @brief Выполняет выбранную арифметическую операцию
+ * @param a Первое число
+ * @param b Второе число
+ * @param operation Выбранная операция
+ */
+void PerformOperation(const int a, const int b, const enum Operation operation);
+/**
+ * @brief Точка входа в программу
+ * @return 0, если программа выполнена корректно, иначе не 0
+ */
+int main()
+{
+    printf("Enter the first number: ");
+    int a = getInt();
+    
+    printf("Enter the second number: ");
+    int b = getInt();
+
+    printf("Choose an operation:\n");
+    printf("1. Sum\n");
+    printf("2. Difference\n");
+    printf("3. Average\n");
+
+    printf("Enter operation number: ");
+    enum Operation operation = getInt();
+
+    PerformOperation(a, b, operation);
+    return 0;
+}
+
+int getInt()
+{
+    int a = 0;
+    
+    if (scanf("%d", &a) != 1)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    return a;
+}
+
+void PerformOperation(const int a, const int b, const enum Operation operation)
+{
+    switch (operation)
+    {
+        case SUM:
+            printf("The sum is: %d\n", GetSum(a, b));
+            break;
+        case DIFFERENCE:
+            printf("The difference is: %d\n", GetDifference(a, b));
+            break;
+        case AVERAGE:
+            printf("The average is: %lf\n", GetAverage(a, b));
+            break;
+        default:
+            printf("Invalid operation\n");
+            exit(1);
+    }
+}
+
+int GetSum(const int a, const int b)
+{
+    return a + b;
+}
+
+int GetDifference(const int a, const int b)
+{
+    return a - b;
+}
+
+double GetAverage(const int a, const int b)
+{
+    return (a + b) / 2.0;
+}
